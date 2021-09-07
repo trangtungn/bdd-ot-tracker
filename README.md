@@ -1,6 +1,6 @@
 # OTT
 
-Overtime Tracker app, following guidance of Professional Rails Code Along course of Jordan Hudgens in Udemy
+Overtime Tracker app, following guidance from Professional Rails Code Along course of Jordan Hudgens in Udemy
 
 * Ruby version: 3.0.2p107
 
