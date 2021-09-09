@@ -1,0 +1,96 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.7.1
+  NewCops: enable
+  Exclude:
+  - '**/*.yml'
+  - 'db/**/*'
+  - 'smoke/**/*'
+  - 'config/**/*'
+  - 'doc/**/*'
+  - 'deployment/**/*'
+  - 'bin/**/*'
+  - 'lib/tasks/**/*'
+  - '**/Gemfile'
+  - 'vendor/bundle/**/*'
+  - 'node_modules/**/*'
+
+# Don't require top-level class documentation comment
+Style/Documentation:
+  Enabled: false
+
+# Change default line length from 120 to 160
+Layout/LineLength:
+  Max: 160
+
+# Allow methods to have 30 lines instead of 10, don't count comments
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+# Allow using @_method_name for memoization
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+# Allow higher complexity (default 7)
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+# Allow .(&method(:method_name) syntax (it's a bit slower)
+Performance/MethodObjectAsBlock:
+  Enabled: false
+
+# Allow higher Assignment Branch Condition
+Metrics/AbcSize:
+  Max: 35
+
+# Allow longer classes (default 100), don't count comments
+Metrics/ClassLength:
+  CountComments: false
+  Max: 500
+
+# Allow methods like `has_audience?` (instead of `audience?`)
+Naming/PredicateName:
+  Enabled: false
+
+# Don't require super in child classes initializers
+Lint/MissingSuper:
+  Enabled: false
+
+# Don't require inverse_of in associations
+Rails/InverseOf:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude: ['spec/**/*']
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
+  Exclude: ['spec/acceptance/**/*']
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/ExampleLength:
+  Exclude: ['spec/acceptance/**/*']
+  Max: 10
+
+Rails/EnvironmentVariableAccess:
+  Enabled: false
