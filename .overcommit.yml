@@ -1,0 +1,18 @@
+PreCommit:
+  ALL:
+    problem_on_unmodified_line: warn
+
+  RuboCop:
+    enabled: true
+    on_warn: fail
+
+  TrailingWhitespace:
+    enabled: true
+    exclude:
+      - '**/db/structure.sql'
+
+  EsLint:
+    enabled: true
+    command: ['./node_modules/.bin/eslint']
+    required_executable: './node_modules/.bin/eslint'
+    include: ['app/javascript/**/*.js', 'app/javascript/**/*.vue']
