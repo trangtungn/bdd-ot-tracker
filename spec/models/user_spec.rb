@@ -4,25 +4,21 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'creation' do
-    let(:user) do
+    subject do
       described_class.create(
-        email: 'test@ott.com',
-        password: '12345678',
-        password_confirmation: '12345678',
-        first_name: 'Test',
-        last_name: 'User'
+        email: 'test@test.com',
+        password: '123456',
+        username: 'test'
       )
     end
 
     it 'can be created' do
-      expect(user).to be_valid
+      expect(subject).to be_valid
     end
 
-    it 'cannot be created without first_name, last_name' do
-      user.first_name = nil
-      user.last_name = nil
-
-      expect(user).not_to be_valid
+    it 'cannot be created without username' do
+      subject.username = nil
+      expect(subject).not_to be_valid
     end
   end
 end
