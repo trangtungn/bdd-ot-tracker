@@ -1,0 +1,6 @@
+<%= form_for @post, url: { action: :create } do |f| %>
+  <%= f.date_field :date %>
+  <%= f.text_area :rationale %>
+
+  <%= f.submit 'Save' %>
+<% end %>
