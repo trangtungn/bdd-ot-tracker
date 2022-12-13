@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :set_post, only: :show
+
   def index; end
 
   def new
@@ -8,13 +10,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:date, :rationale))
-    @post.save
+    @post = Post.new(post_params)
 
-    redirect_to @post
+    if @post.save
+      redirect_to @post, notice: 'Your post was created successfully!'
+    else
+      render :new
+    end
   end
 
-  def show
+  def show; end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:date, :rationale)
+  end
+
+  def set_post
     @post = Post.find(params[:id])
   end
 end

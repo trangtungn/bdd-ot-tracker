@@ -16,14 +16,15 @@ describe 'Posts' do
   end
 
   describe 'creation' do
-    it 'can reach a new form' do
+    before do
       visit new_post_path
+    end
+
+    it 'can reach a new form' do
       expect(page.status_code).to eq(200)
     end
 
     it 'can create a new post' do
-      visit new_post_path
-
       fill_in 'post[date]', with: Time.zone.today
       fill_in 'post[rationale]', with: 'Some rationale'
 
