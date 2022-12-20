@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   describe 'GET /index' do
-    pending "add some examples (or delete) #{__FILE__}"
+    it 'can be reached successfully' do
+      get '/posts'
+
+      expect(response.status_code).to eq(200)
+    end
   end
 end
