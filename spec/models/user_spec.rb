@@ -8,7 +8,8 @@ RSpec.describe User, type: :model do
       described_class.create(
         email: 'test@test.com',
         password: '123456',
-        username: 'test'
+        first_name: 'Tester',
+        last_name: 'T'
       )
     end
 
@@ -16,8 +17,18 @@ RSpec.describe User, type: :model do
       expect(subject).to be_valid
     end
 
-    it 'cannot be created without username' do
-      subject.username = nil
+    it 'cannot be created without email' do
+      subject.email = nil
+      expect(subject).not_to be_valid
+    end
+
+    it 'cannot be created without first name' do
+      subject.first_name = nil
+      expect(subject).not_to be_valid
+    end
+
+    it 'cannot be created without last name' do
+      subject.last_name = nil
       expect(subject).not_to be_valid
     end
   end

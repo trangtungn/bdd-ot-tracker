@@ -9,6 +9,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :first_name %>
+    <%= render 'devise/shared/error_field', resource: resource, field: :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= render 'devise/shared/error_field', resource: resource, field: :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

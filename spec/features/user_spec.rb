@@ -14,6 +14,8 @@ describe 'Users' do
 
     it 'can create a new user' do
       fill_in 'user[email]', with: 'abc@test.co'
+      fill_in 'user[first_name]', with: 'Tester'
+      fill_in 'user[last_name]', with: 'T'
       fill_in 'user[password]', with: 'abcdef'
       fill_in 'user[password_confirmation]', with: 'abcdef'
       click_on 'Sign up'
