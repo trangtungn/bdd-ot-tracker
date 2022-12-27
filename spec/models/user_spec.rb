@@ -31,5 +31,9 @@ RSpec.describe User, type: :model do
       subject.last_name = nil
       expect(subject).not_to be_valid
     end
+
+    it 'can return full name' do
+      expect(subject.full_name).to eq 'T, Tester'
+    end
   end
 end
