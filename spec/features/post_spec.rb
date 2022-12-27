@@ -53,4 +53,32 @@ describe 'Posts' do
       expect(User.last.posts.last.rationale).to eq('User association')
     end
   end
+
+  describe 'edit' do
+    let(:post) { FactoryBot.create(:post) }
+
+    before do
+      post
+    end
+
+    it 'can reach edit post page' do
+      visit posts_path
+
+      click_link 'Edit'
+      expect(page.status_code).to eq(200)
+    end
+
+    it 'can edit post' do
+      visit edit_post_path(post)
+
+      fill_in 'post[date]', with: Time.zone.today
+      fill_in 'post[rationale]', with: 'New rationale'
+
+      click_on 'Save'
+
+      expect(page.status_code).to eq(200)
+      expect(page).to have_content(/Post/)
+      expect(page).to have_content(/New rationale/)
+    end
+  end
 end

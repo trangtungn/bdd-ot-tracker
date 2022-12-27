@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: :show
+  before_action :set_post, only: %i[show edit update]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(:id)
   end
 
   def new
@@ -22,6 +22,14 @@ class PostsController < ApplicationController
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    @post.update(post_params)
+
+    render :show
+  end
 
   private
 
