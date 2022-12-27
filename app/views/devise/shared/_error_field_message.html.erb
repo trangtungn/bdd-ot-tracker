@@ -2,7 +2,7 @@
   if error_field?(resource, field)
     error_messages(resource, field).each do |msg|
 %>
-      <em><%= msg %></em>
+      <em><%= "#{field.to_s.humanize} #{msg}" %></em>
     <% end %>
 <% else %>
   <br />
