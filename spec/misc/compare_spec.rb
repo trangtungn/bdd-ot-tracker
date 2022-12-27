@@ -17,14 +17,14 @@ describe 'all compare statements', type: :feature do
   describe 'String' do
     it('expects strings eq by value of the objects') { expect(str).to eq '' }
     it('expects strings eql by value of the objects') { expect(str).to eql '' }
-    it('expects Strings equal by object_id of the objects') { expect(str).to equal '' } # Failed
-    it('expects strings to be by object_id of the objects') { expect(str).to be '' } # Failed
+    it('expects Strings NOT equal by object_id of the objects') { expect(str).not_to equal '' } # Failed
+    it('expects strings NOT to be by object_id of the objects') { expect(str).not_to be '' } # Failed
   end
 
   describe 'Array' do
     it('expects Arrays eq by value of the objects') { expect(arr).to eq a: 1 }
     it('expects Arrays eql by value of the objects') { expect(arr).to eql(a: 1) }
-    it('expects Arrays equal by object_id of the objects') { expect(arr).to equal({ a: 1 }) } # Failed
-    it('expects Arrays to be by object_id of the objects') { expect(arr).to be a: 1 }         # Failed
+    it('expects Arrays NOT equal by object_id of the objects') { expect(arr).not_to equal({ a: 1 }) } # Failed
+    it('expects Arrays NOT to be by object_id of the objects') { expect(arr).not_to be a: 1 }         # Failed
   end
 end
