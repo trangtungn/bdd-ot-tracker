@@ -3,17 +3,18 @@
 require 'rails_helper'
 
 describe 'Posts' do
-  before do
-    user = User.create(
+  let(:user) do
+    User.create(
       email: 'abc@test.co',
       password: '123456',
       password_confirmation: '123456',
       first_name: 'Jon',
       last_name: 'Doe'
     )
-    sign_in(user, scope: :user)
+  end
 
-    visit new_post_path
+  before do
+    sign_in(user, scope: :user)
   end
 
   describe 'index' do
@@ -22,13 +23,20 @@ describe 'Posts' do
       expect(page.status_code).to eq(200)
     end
 
-    it 'has a title of Posts' do
+    it 'has a list of posts' do
+      Post.create!(date: Time.zone.today, rationale: 'Post 1', user: user)
+      Post.create!(date: Time.zone.today, rationale: 'Post 2', user: user)
+
       visit posts_path
-      expect(page).to have_content(/Posts/)
+      expect(page).to have_content(/Post 1|Post 2/)
     end
   end
 
   describe 'creation' do
+    before do
+      visit new_post_path
+    end
+
     it 'can reach a new form' do
       expect(page.status_code).to eq(200)
     end
