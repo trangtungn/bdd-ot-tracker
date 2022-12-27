@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'Creation' do
-    subject { described_class.create(date: Time.zone.today, rationale: 'Anything') }
+    subject { FactoryBot.create(:post) }
 
     it 'can be created' do
       expect(subject).to be_valid

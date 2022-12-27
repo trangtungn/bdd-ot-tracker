@@ -3,15 +3,7 @@
 require 'rails_helper'
 
 describe 'Posts' do
-  let(:user) do
-    User.create(
-      email: 'abc@test.co',
-      password: '123456',
-      password_confirmation: '123456',
-      first_name: 'Jon',
-      last_name: 'Doe'
-    )
-  end
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     sign_in(user, scope: :user)
@@ -24,11 +16,13 @@ describe 'Posts' do
     end
 
     it 'has a list of posts' do
-      Post.create!(date: Time.zone.today, rationale: 'Post 1', user: user)
-      Post.create!(date: Time.zone.today, rationale: 'Post 2', user: user)
+      FactoryBot.create(:post)
+      FactoryBot.create(:second_post)
 
       visit posts_path
-      expect(page).to have_content(/Post 1|Post 2/)
+      expect(page).to have_content(/rationale today/)
+      expect(page).to have_content(/rationale yesterday/)
+      expect(page).to have_content(/Tester1|Tester2/)
     end
   end
 

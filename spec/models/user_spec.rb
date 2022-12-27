@@ -5,12 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'creation' do
     subject do
-      described_class.create(
-        email: 'test@test.com',
-        password: '123456',
-        first_name: 'Tester',
-        last_name: 'T'
-      )
+      FactoryBot.create(:user)
     end
 
     it 'can be created' do
@@ -33,7 +28,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'can return full name' do
-      expect(subject.full_name).to eq 'T, Tester'
+      expect(subject.full_name).to eq 'T, Tester1'
     end
   end
 end

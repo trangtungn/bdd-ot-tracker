@@ -29,6 +29,8 @@ describe 'Users' do
       click_on 'Sign up'
 
       expect(page).to have_content(/Email can't be blank/)
+      expect(page).to have_content(/First name can't be blank/)
+      expect(page).to have_content(/Last name can't be blank/)
     end
   end
 end
