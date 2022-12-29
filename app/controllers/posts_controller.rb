@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @posts = Post.all.order(:id)
@@ -28,7 +28,12 @@ class PostsController < ApplicationController
   def update
     @post.update(post_params)
 
-    render :show
+    render :show, notice: 'Your post was updated successfully!'
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: 'Post deleted successfully!'
   end
 
   private

@@ -13,6 +13,7 @@ describe 'Posts' do
     it 'can be reached successfully' do
       visit posts_path
       expect(page.status_code).to eq(200)
+      expect(page).to have_content(/List/)
     end
 
     it 'has a list of posts' do
@@ -26,6 +27,16 @@ describe 'Posts' do
     end
   end
 
+  describe 'new' do
+    it 'has a link to new post in homepage' do
+      visit root_path
+
+      click_link 'New Entry'
+      expect(page.status_code).to eq 200
+      expect(page).to have_content(/New Entry/)
+    end
+  end
+
   describe 'creation' do
     before do
       visit new_post_path
@@ -33,6 +44,7 @@ describe 'Posts' do
 
     it 'can reach a new form' do
       expect(page.status_code).to eq(200)
+      expect(page).to have_content(/New Entry/)
     end
 
     it 'can create a new post' do
@@ -64,7 +76,7 @@ describe 'Posts' do
     it 'can reach edit post page' do
       visit posts_path
 
-      click_link 'Edit'
+      click_link "edit_entry_#{post.id}"
       expect(page.status_code).to eq(200)
     end
 
@@ -79,6 +91,24 @@ describe 'Posts' do
       expect(page.status_code).to eq(200)
       expect(page).to have_content(/Post/)
       expect(page).to have_content(/New rationale/)
+    end
+  end
+
+  describe 'delete' do
+    let(:post) { FactoryBot.create(:post) }
+
+    before do
+      post
+    end
+
+    it 'can delete post' do
+      visit posts_path
+
+      click_link "delete_entry_#{post.id}"
+      expect(page.status_code).to eq(200)
+      expect(page).to have_content(/List Entries/)
+      expect(page).to have_no_content(post.id)
+      expect(page).to have_no_content(post.rationale)
     end
   end
 end
