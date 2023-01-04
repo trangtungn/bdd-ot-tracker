@@ -4,12 +4,14 @@
 // that code so it'll be compiled.
 
 require("bootstrap");
-require("@fortawesome/fontawesome-free");
+// require("@fortawesome/fontawesome-free");
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+
+require('./toastr');
 
 Rails.start()
 Turbolinks.start()
