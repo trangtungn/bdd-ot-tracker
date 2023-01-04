@@ -1,0 +1,7 @@
+<% if flash.any? %>
+  <script type="text/javascript">
+  <% flash.each do |type, msg| %>
+    toastr.<%= type %>('<%= msg %>')
+  <% end %>
+  </script>
+<% end %>
