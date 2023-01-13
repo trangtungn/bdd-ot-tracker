@@ -1,4 +1,6 @@
 <%= form_with model: @post, class: 'row g-3 needs-validation' do |f| %>
+  <%= javascript_tag(validate(@post)) %>
+
   <div class="col-md-9">
     <%= f.label :date, class: 'form-label' %>
     <%= f.date_field :date, class: 'form-control form-control-lg' %>
