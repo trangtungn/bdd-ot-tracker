@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts
-  devise_for :users, skip: :registrations, skip_helpers: true
+  devise_for :users, controllers: { confirmations: 'confirmations' } , skip: :registrations, skip_helpers: true
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: 'static#homepage'
