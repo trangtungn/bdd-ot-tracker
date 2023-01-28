@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class UserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -9,18 +11,17 @@ class UserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    email: Field::String,
-    password: Field::String,
-    first_name: Field::String,
-    last_name: Field::String,
+    email: Field::String.with_options(searchable: true),
+    password: Field::String.with_options(searchable: false),
+    first_name: Field::String.with_options(searchable: true),
+    last_name: Field::String.with_options(searchable: true),
+    type: Field::String,
     posts: Field::HasMany,
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
     reset_password_token: Field::String,
-    type: Field::String,
-    username: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,19 +34,18 @@ class UserDashboard < Administrate::BaseDashboard
     email
     first_name
     last_name
+    type
     posts
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    id
     email
     password
     first_name
     last_name
     type
-    username
     created_at
     updated_at
     posts
@@ -71,10 +71,10 @@ class UserDashboard < Administrate::BaseDashboard
   # For example to add an option to search for open resources by typing "open:"
   # in the search field:
   #
-  #   COLLECTION_FILTERS = {
-  #     open: ->(resources) { resources.where(open: true) }
-  #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+  COLLECTION_FILTERS = {
+    admin: ->(resources) { resources.where(type: 'AdminUser') }
+  }.freeze
+  # COLLECTION_FILTERS = {}.freeze
 
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.

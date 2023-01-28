@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class AdminUserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -9,18 +11,17 @@ class AdminUserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    email: Field::String,
-    password: Field::String,
-    first_name: Field::String,
-    last_name: Field::String,
+    email: Field::String.with_options(searchable: true),
+    password: Field::String.with_options(searchable: false),
+    first_name: Field::String.with_options(searchable: true),
+    last_name: Field::String.with_options(searchable: true),
     posts: Field::HasMany,
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
     reset_password_token: Field::String,
     type: Field::String,
-    username: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -29,7 +30,6 @@ class AdminUserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    id
     email
     first_name
     last_name
@@ -45,7 +45,6 @@ class AdminUserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     type
-    username
     created_at
     updated_at
     remember_created_at
