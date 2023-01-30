@@ -15,12 +15,11 @@
       Please enter rationale!
     </div>
   </div>
+  <% if admin? %>
   <div class="col-md-9">
-    <% Post.statuses.keys.each do |status| %>
-      <%= f.radio_button :status, status %>
-      <%= f.label :status, status.titleize %>
-    <% end %>
+    <%= render partial: 'status', locals: {f: f} %>
   </div>
+  <% end %>
   <div class="form-floating col-md-9">
     <%= f.text_field :user_id, class: 'form-control', placeholder: 'Input here...', disabled: true %>
     <%= f.label :user_id %>

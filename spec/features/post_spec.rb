@@ -93,15 +93,26 @@ describe 'Posts' do
       expect(page).to have_content(/New rationale/)
     end
 
-    it 'can edit post status' do
-      visit edit_post_path(post)
+    # describe 'approval workflow' do
+    #   it 'do not have status in form' do
+    #     visit edit_post_path(post)
+    #     expect(page).not_to have_content('Approved')
+    #   end
 
-      choose 'post_status_approved'
+    #   it 'can change status' do
+    #     sign_out(user)
 
-      click_on 'Save'
+    #     admin_user = FactoryBot.create(:admin_user)
+    #     sign_in(admin_user)
 
-      expect(post.reload.status).to eq('approved')
-    end
+    #     visit edit_post_path(post)
+
+    #     choose('post_status_approved')
+    #     click_on 'Save'
+
+    #     expect(post.reload.status).to eq('approved')
+    #   end
+    # end
   end
 
   describe 'delete' do

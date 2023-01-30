@@ -1,0 +1,4 @@
+<% Post.statuses.keys.each do |status| %>
+  <%= f.radio_button :status, status %>
+  <%= f.label :status, status.titleize %>
+<% end %>
