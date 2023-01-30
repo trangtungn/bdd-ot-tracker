@@ -7,15 +7,11 @@
 # If you want to add pagination or other controller-level concerns,
 # you're free to overwrite the RESTful controller actions.
 module Admin
-  def self.admin_types
-    %w[AdminUser]
-  end
-
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_user!, :authenticate_admin
 
     def authenticate_admin
-      return if Admin.admin_types.include?(current_user.try(:type))
+      return if current_user.admin?
 
       flash[:error] = 'You are not authorized to access this page'
 

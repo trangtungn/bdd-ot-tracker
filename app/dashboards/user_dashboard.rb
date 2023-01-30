@@ -72,7 +72,7 @@ class UserDashboard < Administrate::BaseDashboard
   # in the search field:
   #
   COLLECTION_FILTERS = {
-    admin: ->(resources) { resources.where(type: 'AdminUser') }
+    admin: ->(resources) { resources.where(type: User::ADMIN_TYPES) }
   }.freeze
   # COLLECTION_FILTERS = {}.freeze
 

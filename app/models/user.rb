@@ -10,6 +10,12 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, presence: true
 
+  ADMIN_TYPES = %w[AdminUser].freeze
+
+  def admin?
+    ADMIN_TYPES.include?(type)
+  end
+
   def full_name
     "#{last_name}, #{first_name}"
   end
