@@ -92,6 +92,16 @@ describe 'Posts' do
       expect(page).to have_content(/Post/)
       expect(page).to have_content(/New rationale/)
     end
+
+    it 'can edit post status' do
+      visit edit_post_path(post)
+
+      choose 'post_status_approved'
+
+      click_on 'Save'
+
+      expect(post.reload.status).to eq('approved')
+    end
   end
 
   describe 'delete' do
