@@ -13,9 +13,13 @@
   <body>
     <div class="container">
       <div class="row">
+        <%= render 'shared/flash' %>
+
         <div class="col-md-12">
-          <%= render 'shared/flash' %>
-          <%= render 'shared/nav' %>
+          <div class="logo">
+            <h1>Time Tracker</h1>
+          </div>
+          <%= render 'shared/nav' if logged_in? %>
           <div class="jumbotron m-3">
             <%= yield %>
           </div>
