@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'administrate'
+gem 'pundit'
 
 group :development, :test do
   gem 'capybara'
