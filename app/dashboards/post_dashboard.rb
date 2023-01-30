@@ -13,6 +13,7 @@ class PostDashboard < Administrate::BaseDashboard
     id: Field::Number,
     date: Field::Date.with_options(searchable: true),
     rationale: Field::Text.with_options(searchable: true),
+    status: Field::Select.with_options(searchable: true, collection: Post.statuses.keys),
     user: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -26,6 +27,7 @@ class PostDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     date
     rationale
+    status
     user
   ].freeze
 
@@ -35,6 +37,7 @@ class PostDashboard < Administrate::BaseDashboard
     date
     rationale
     user
+    status
     created_at
     updated_at
   ].freeze
@@ -45,6 +48,7 @@ class PostDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     date
     rationale
+    status
     user
   ].freeze
 
