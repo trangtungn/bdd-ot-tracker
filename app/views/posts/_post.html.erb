@@ -3,6 +3,7 @@
   <td><%= post.date %></td>
   <td><%= post.user.full_name %></td>
   <td><%= truncate(post.rationale) %></td>
+  <td><%= status_span post.status %></td>
   <td>
     <%= link_to 'Edit', edit_post_path(post), id: "edit_entry_#{post.id}" %>
     <%= link_to 'Delete', post_path(post), method: :delete, id: "delete_entry_#{post.id}", data: { confirm: 'Are you sure?' } %>
