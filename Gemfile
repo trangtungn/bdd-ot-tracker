@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'administrate'
 gem 'pundit'
+gem 'puma-status'
 
 group :development, :test do
   gem 'capybara'
