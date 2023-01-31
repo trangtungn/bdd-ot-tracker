@@ -5,8 +5,12 @@ require 'rails_helper'
 describe 'Posts' do
   let(:user) { FactoryBot.create(:user) }
 
+  let(:post1) { FactoryBot.create(:post, user: user) }
+  let(:post2) { FactoryBot.create(:second_post, user: user) }
+  let(:post_of_other_user) { FactoryBot.create(:third_post) }
+
   before do
-    sign_in(user, scope: :user)
+    sign_in(user)
   end
 
   describe 'index' do
@@ -17,13 +21,25 @@ describe 'Posts' do
     end
 
     it 'has a list of posts' do
-      FactoryBot.create(:post)
-      FactoryBot.create(:second_post)
+      post1
+      post2
 
       visit posts_path
       expect(page).to have_content(/rationale today/)
       expect(page).to have_content(/rationale yesterday/)
       expect(page).to have_content(/Tester1|Tester2/)
+    end
+
+    it 'has list of a specific user\'s posts' do
+      post1
+      post_of_other_user
+
+      visit posts_path
+
+      expect(page).to have_content(post1.rationale)
+      expect(page).to have_content(post1.user.full_name)
+      expect(page).not_to have_content(post_of_other_user.rationale)
+      expect(page).not_to have_content(post_of_other_user.user.full_name)
     end
   end
 
@@ -67,21 +83,19 @@ describe 'Posts' do
   end
 
   describe 'edit' do
-    let(:post) { FactoryBot.create(:post, user: user) }
-
     before do
-      post
+      post1
     end
 
     it 'can reach edit post page' do
       visit posts_path
 
-      click_link "edit_entry_#{post.id}"
+      click_link "edit_entry_#{post1.id}"
       expect(page.status_code).to eq(200)
     end
 
     it 'can edit post' do
-      visit edit_post_path(post)
+      visit edit_post_path(post1)
 
       fill_in 'post[date]', with: Time.zone.today
       fill_in 'post[rationale]', with: 'New rationale'
@@ -91,6 +105,12 @@ describe 'Posts' do
       expect(page.status_code).to eq(200)
       expect(page).to have_content(/Post/)
       expect(page).to have_content(/New rationale/)
+    end
+
+    it 'cannot edit an unauthorized post' do
+      visit edit_post_path(post_of_other_user)
+
+      expect(page).to have_current_path(root_path)
     end
 
     # describe 'approval workflow' do
@@ -116,20 +136,18 @@ describe 'Posts' do
   end
 
   describe 'delete' do
-    let(:post) { FactoryBot.create(:post) }
-
     before do
-      post
+      post1
     end
 
     it 'can delete post' do
       visit posts_path
 
-      click_link "delete_entry_#{post.id}"
+      click_link "delete_entry_#{post1.id}"
+
       expect(page.status_code).to eq(200)
       expect(page).to have_content(/List Entries/)
-      expect(page).to have_no_content(post.id)
-      expect(page).to have_no_content(post.rationale)
+      expect(page).to have_no_content(post1.rationale)
     end
   end
 end
