@@ -11,7 +11,7 @@ describe 'Posts' do
   end
 
   describe 'edit' do
-    let(:post) { FactoryBot.create(:post) }
+    let(:post) { FactoryBot.create(:post, user: user) }
 
     before do
       visit edit_post_path(post)
@@ -32,6 +32,20 @@ describe 'Posts' do
       visit edit_post_path(post)
 
       expect(page).not_to have_content('Approved')
+    end
+
+    it 'cannot be edited by the owner after the post was approved by an admin' do
+      choose 'post_status_approved'
+
+      click_on 'Save'
+
+      sign_out admin
+
+      sign_in user
+
+      visit edit_post_path(post)
+
+      expect(page).to have_current_path(root_path)
     end
   end
 end

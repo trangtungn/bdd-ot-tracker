@@ -107,7 +107,7 @@ describe 'Posts' do
       expect(page).to have_content(/New rationale/)
     end
 
-    it 'cannot edit an unauthorized post' do
+    it 'cannot edit by an unauthorized user (the post creator)' do
       visit edit_post_path(post_of_other_user)
 
       expect(page).to have_current_path(root_path)
