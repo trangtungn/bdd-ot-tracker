@@ -2,7 +2,7 @@
 
 class PostPolicy < ApplicationPolicy
   def update?
-    record.user_id == user.id || user.admin?
+    (record.user_id == user.id && !record.approved?) || user.admin?
   end
 
   class Scope < Scope
