@@ -10,4 +10,6 @@ class Post < ApplicationRecord
   belongs_to :user
 
   validates(*%i[date rationale], presence: true)
+
+  scope :post_by, ->(user) { where(user: user) }
 end
