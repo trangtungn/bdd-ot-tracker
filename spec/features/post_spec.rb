@@ -67,7 +67,7 @@ describe 'Posts' do
   end
 
   describe 'edit' do
-    let(:post) { FactoryBot.create(:post) }
+    let(:post) { FactoryBot.create(:post, user: user) }
 
     before do
       post
