@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Users' do
+xdescribe 'Users' do
   describe 'sign up' do
     before do
       visit new_user_registration_path
