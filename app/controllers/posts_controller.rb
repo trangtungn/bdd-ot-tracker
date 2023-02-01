@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, success: 'Your post was created successfully!'
     else
-      render :new, error: 'Something went wrong!'
+      render :new
     end
   end
 
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:date, :rationale, :status)
+    params.require(:post).permit(:date, :rationale, :status, :overtime_request)
   end
 
   def set_post

@@ -2,6 +2,10 @@
   <%= javascript_tag(validate(@post)) %>
 
   <div class="col-md-9">
+    <%= f.label :overtime_request, class: 'form-label' %>
+    <%= f.text_field :overtime_request, class: 'form-control form-control-lg' %>
+  </div>
+  <div class="col-md-9">
     <%= f.label :date, class: 'form-label' %>
     <%= f.date_field :date, class: 'form-control form-control-lg' %>
     <div class="invalid-feedback">

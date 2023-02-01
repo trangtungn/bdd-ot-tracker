@@ -28,6 +28,7 @@ describe 'Posts' do
       expect(page).to have_content(/rationale today/)
       expect(page).to have_content(/rationale yesterday/)
       expect(page).to have_content(/Tester1|Tester2/)
+      expect(page).to have_content(1.5)
     end
 
     it 'has list of a specific user\'s posts' do
@@ -37,6 +38,7 @@ describe 'Posts' do
       visit posts_path
 
       expect(page).to have_content(post1.rationale)
+      expect(page).to have_content(post1.overtime_request)
       expect(page).to have_content(post1.user.full_name)
       expect(page).not_to have_content(post_of_other_user.rationale)
       expect(page).not_to have_content(post_of_other_user.user.full_name)
@@ -66,19 +68,29 @@ describe 'Posts' do
     it 'can create a new post' do
       fill_in 'post[date]', with: Time.zone.today
       fill_in 'post[rationale]', with: 'Some rationale'
+      fill_in 'post[overtime_request]', with: 3.5
 
-      click_on 'Save'
-
+      expect { click_on 'Save' }.to change(Post.post_by(user), :count).by 1
       expect(page).to have_content(/Some rationale/)
     end
 
     it 'can create a new post with a user associated with it' do
       fill_in 'post[date]', with: Time.zone.today
       fill_in 'post[rationale]', with: 'User association'
+      fill_in 'post[overtime_request]', with: 4.5
 
       click_on 'Save'
 
-      expect(User.last.posts.last.rationale).to eq('User association')
+      expect(user.posts.last.rationale).to eq('User association')
+      expect(user.posts.last.overtime_request).to eq(4.5)
+    end
+
+    it 'cannot create a post without overtime request' do
+      fill_in 'post[date]', with: Time.zone.today
+      fill_in 'post[rationale]', with: 'User association'
+
+      expect { click_on 'Save' }.not_to(change { Post.post_by(user).count })
+      expect(page).to have_content(/New Entry/)
     end
   end
 
