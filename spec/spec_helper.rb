@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'fake_sms_tool'
+# using config.autoload_paths << 'lib' instead
+# require 'fake_sms_tool'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'twilio-ruby'
+# using config.autoload_paths << 'lib' instead
+# require 'twilio-ruby'
 
 module SmsTool
   def self.send_sms(number:, message:)
