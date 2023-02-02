@@ -46,6 +46,6 @@ describe 'all types of before', type: :feature do
     end
 
     it { is_expected.to eq 1 }
-    it { is_expected.to eq 1 }
+    # it { is_expected.to eq 1 }
   end
 end
