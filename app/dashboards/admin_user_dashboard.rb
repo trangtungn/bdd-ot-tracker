@@ -15,6 +15,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     password: Field::String.with_options(searchable: false),
     first_name: Field::String.with_options(searchable: true),
     last_name: Field::String.with_options(searchable: true),
+    phone: Field::String.with_options(searchable: true),
     posts: Field::HasMany,
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
@@ -33,6 +34,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     email
     first_name
     last_name
+    phone
     posts
   ].freeze
 
@@ -44,6 +46,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     password
     first_name
     last_name
+    phone
     type
     created_at
     updated_at
@@ -61,6 +64,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     password
     first_name
     last_name
+    phone
   ].freeze
 
   # COLLECTION_FILTERS

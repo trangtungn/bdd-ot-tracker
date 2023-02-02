@@ -3,15 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'creation' do
-    subject do
-      FactoryBot.create(:user)
-    end
+  subject do
+    FactoryBot.create(:user)
+  end
 
+  describe 'creation' do
     it 'can be created' do
       expect(subject).to be_valid
     end
+  end
 
+  describe 'validations' do
     it 'cannot be created without email' do
       subject.email = nil
       expect(subject).not_to be_valid
@@ -27,8 +29,13 @@ RSpec.describe User, type: :model do
       expect(subject).not_to be_valid
     end
 
+    it 'cannot be created without phone' do
+      subject.phone = nil
+      expect(subject).not_to be_valid
+    end
+
     it 'can return full name' do
-      expect(subject.full_name).to eq 'T, Tester1'
+      expect(subject.full_name).to eq('T, Tester1')
     end
   end
 end

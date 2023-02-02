@@ -8,7 +8,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
-  validates :email, :first_name, :last_name, presence: true
+  validates :email, :first_name, :last_name, :phone, presence: true
+
+  VALID_PHONE_NUMBER_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/.freeze
+
+  validates :phone, format: { with: VALID_PHONE_NUMBER_REGEX }
 
   ADMIN_TYPES = %w[AdminUser].freeze
 
