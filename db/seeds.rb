@@ -43,3 +43,12 @@ num.times do |idx|
 end
 
 p "#{num} posts have been created."
+
+num.times do |idx|
+  AuditLog.create!(
+    user: user,
+    start_date: Time.zone.today - 6.days
+  )
+end
+
+p "#{num} audit logs have been created."
