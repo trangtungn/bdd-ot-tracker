@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :audit_logs, only: :index
+
   namespace :admin do
     resources :users
     resources :admin_users
