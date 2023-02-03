@@ -15,6 +15,7 @@ gem 'devise'
 gem 'administrate'
 gem 'pundit'
 gem 'puma-status'
+gem 'kaminari'
 
 group :development, :test do
   gem 'capybara'

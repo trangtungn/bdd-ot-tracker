@@ -366,6 +366,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.3)
   memory_profiler
   overcommit
