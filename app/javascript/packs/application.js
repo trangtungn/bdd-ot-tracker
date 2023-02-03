@@ -13,6 +13,9 @@ import "channels"
 
 require('./toastr');
 
+// ReferenceError: $ is not defined in Rails 6
+global.$ = $; // OR window.$ = $;
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
