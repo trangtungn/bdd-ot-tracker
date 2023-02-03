@@ -6,7 +6,9 @@
   <td><%= truncate(post.rationale) %></td>
   <td><%= post_status_span post.status %></td>
   <td>
-    <%= link_to 'Edit', edit_post_path(post), id: "edit_entry_#{post.id}", class: policy(post).update? ? '' : 'disabled' %>
-    <%= link_to 'Delete', post_path(post), method: :delete, id: "delete_entry_#{post.id}", data: { confirm: 'Are you sure?' } %>
+    <%= link_to '', edit_post_path(post), id: "edit_entry_#{post.id}", class: 'bi bi-pencil icons ' + (policy(post).update? ? '' : 'disabled') %>
+  </td>
+  <td>
+    <%= link_to '', post_path(post), method: :delete, id: "delete_entry_#{post.id}", data: { confirm: 'Are you sure?' }, class: 'bi bi-trash icons' %>
   </td>
 </tr>
