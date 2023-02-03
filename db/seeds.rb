@@ -3,6 +3,7 @@ user = User.create!(
   first_name: 'Test',
   last_name: 'T',
   email: 'test@t.co',
+  phone: '123-456-7890',
   password: '123456',
   password_confirmation: '123456'
 )
@@ -13,6 +14,7 @@ user2 = User.create!(
   first_name: 'Test2',
   last_name: 'T',
   email: 'test2@t.co',
+  phone: '123-654-7890',
   password: '123456',
   password_confirmation: '123456'
 )
@@ -23,6 +25,7 @@ admin = AdminUser.create!(
   first_name: 'Admin',
   last_name: 'T',
   email: 'admin@t.co',
+  phone: '132-456-7890',
   password: '123456',
   password_confirmation: '123456'
 )
