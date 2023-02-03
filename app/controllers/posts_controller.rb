@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = policy_scope(Post).order(:id)
+    @posts = policy_scope(Post).page(params[:page]).order(:id)
   end
 
   def new

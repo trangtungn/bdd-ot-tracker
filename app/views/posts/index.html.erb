@@ -9,11 +9,16 @@
       <th scope="col">Rationale</th>
       <th scope="col">Actions</th>
       <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="posts">
   <%# @posts.each do |post| %>
     <%= render @posts %>
   <%# end %>
   </tbody>
 </table>
+
+<div id="paginator">
+  <%= paginate @posts, remote: true %>
+</div>
