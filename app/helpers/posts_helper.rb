@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PostsHelper
-  COLOR_MAPPER = {
+  POST_COLOR_MAPPER = {
     'approved' => 'success',
     'submitted' => 'primary',
     'rejected' => 'secondary'
@@ -19,7 +19,7 @@ module PostsHelper
     output.join(' ')
   end
 
-  def status_span(status)
-    content_tag(:span, status.titleize, class: "badge bg-#{COLOR_MAPPER[status]}")
+  def post_status_span(status)
+    content_tag(:span, status.titleize, class: "badge bg-#{POST_COLOR_MAPPER[status]}")
   end
 end
