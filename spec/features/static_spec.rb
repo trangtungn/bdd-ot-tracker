@@ -19,7 +19,7 @@ describe 'Static' do
       visit root_path
 
       expect(page.status_code).to eq(200)
-      expect(page).to have_content(/Homepage/)
+      expect(page).to have_content(/Overtime Requests/)
     end
 
     it 'is not visible to non admin user' do
@@ -37,6 +37,7 @@ describe 'Static' do
       visit root_path
 
       expect(page.status_code).to eq(200)
+      expect(page).to have_content(/Overtime Requests/)
       expect(page).to have_content(/Audit Logs/)
     end
   end
