@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy approve]
 
   def index
     @posts = policy_scope(Post).page(params[:page]).order(:id)
@@ -33,6 +33,13 @@ class PostsController < ApplicationController
     @post.update(post_params)
 
     redirect_to @post, success: 'Your post was updated successfully!'
+  end
+
+  def approve
+    authorize @post
+    @post.approved!
+
+    redirect_to root_path, success: "Request #{@post.id} has been approved!"
   end
 
   def destroy
