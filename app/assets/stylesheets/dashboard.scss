@@ -1,0 +1,17 @@
+// Place all the styles related to the AuditLogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.card-border {
+  border: dotted;
+  border-width: 10px 4px;
+  border-radius: 10px 40px;
+
+  > * {
+    color: white;
+  }
+}
+
+.card-detail {
+  font-weight: 900;
+}
