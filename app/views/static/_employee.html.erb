@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2>Overtime Requests</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% @overtime_requests.each do |request| %>
+      <div class="col-sm-4 bg bg-primary my-2">
+        <%= request.inspect %>
+      </div>
+    <% end %>
+  </div>
+  <% if @audit_logs&.any? %>
+    <div class="row">
+      <div class="col">
+        <h2>Audit Logs</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% @audit_logs.each do |log| %>
+        <div class="col-sm-4 bg bg-primary my-2">
+          <%= log.inspect %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

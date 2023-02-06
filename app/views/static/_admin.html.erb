@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2>Pending Overtime Requests</h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= render partial: 'request', locals: { pending_requests: @overtime_requests } %>
+  </div>
+  <% if @audit_logs&.any? %>
+    <div class="row">
+      <div class="col">
+        <h2>Pending Submissions</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% @audit_logs.each do |log| %>
+        <div class="col-sm-4 bg bg-primary my-3 p-3">
+          <%= log.inspect %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
