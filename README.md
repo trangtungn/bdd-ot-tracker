@@ -149,6 +149,7 @@ This application is ready to be deployed to a production environment.
         more specific with the `:engine` and `:engine_version`
 
             ruby '1.9.3', :engine => 'jruby', :engine_version => '1.6.7'
+
   3. RSpec
 
       3.1. [Basic structure](https://relishapp.com/rspec/rspec-core/v/3-9/docs/example-groups/basic-structure-describe-it)
@@ -311,3 +312,36 @@ This application is ready to be deployed to a production environment.
                     end
                 end
               end
+
+  4. Software Development Process
+
+      4.1. TDD
+
+        - [Test Driven Development](https://semaphoreci.com/blog/test-driven-development)
+        - Test-First Programming
+        - allows **short feedback loops** where developers write just the right amount of code and design to make the software work
+
+
+          ![TDD](public/images/tdd.jpeg)
+
+        - [Mocking technique](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
+
+      4.2. BDD
+
+        - [Behavior-Driven Development](https://semaphoreci.com/community/tutorials/behavior-driven-development)
+        - is a software development process which is about minimizing feedback loop
+        - combines general techniques and principles of **Test Driven Development** (TDD)
+        - what, not how: We think about what the system does, rather than how it does it.
+        - is not UI testing.
+
+          ![BDD](public/images/bdd.jpeg)
+
+  5. Resources:
+
+      - [Intro RSpec and Capybara testing](https://rubyyagi.com/intro-rspec-capybara-testing/)
+      - [Cucumber](https://medium.com/@enikozsoldos93/cucumber-in-ruby-on-rails-1a4c2561ae54)
+      - [Rails Functional Testing](https://guides.rubyonrails.org/testing.html#functional-tests-for-your-controllers)
+      - [Rails Integration Testing](https://guides.rubyonrails.org/testing.html#integration-testing)
+      - [Rails System Testing](https://guides.rubyonrails.org/testing.html#system-testing)
+      - [Mocking with RSpec: Doubles and Expectations](https://semaphoreci.com/community/tutorials/mocking-with-rspec-doubles-and-expectations)
+      - [Integration Testing Ruby on Rails with Minitest and Capybara](https://semaphoreci.com/community/tutorials/integration-testing-ruby-on-rails-with-minitest-and-capybara#what-is-integration-testing)
