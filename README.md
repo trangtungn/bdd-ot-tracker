@@ -69,7 +69,7 @@ This application is ready to be deployed to a production environment.
 
   1. This app following guidance from Professional Rails Code Along course of Jordan Hudgens in Udemy
 
-  1. [Gemfile syntax](https://bundler.io/guides/gemfile.html)
+  2. [Gemfile syntax](https://bundler.io/guides/gemfile.html)
 
       + `source`
 
@@ -149,8 +149,9 @@ This application is ready to be deployed to a production environment.
         more specific with the `:engine` and `:engine_version`
 
             ruby '1.9.3', :engine => 'jruby', :engine_version => '1.6.7'
+  3. RSpec
 
-  2. [RSpec basic structure](https://relishapp.com/rspec/rspec-core/v/3-9/docs/example-groups/basic-structure-describe-it)
+      3.1. [Basic structure](https://relishapp.com/rspec/rspec-core/v/3-9/docs/example-groups/basic-structure-describe-it)
 
       - `describe` aliases for `example_group`
       - `context`: nested group
@@ -175,7 +176,7 @@ This application is ready to be deployed to a production environment.
               in one context
                 does one thing
 
-  3. [RSpec Expectation](https://relishapp.com/rspec/rspec-expectations/docs)
+      3.2 [Expectation](https://relishapp.com/rspec/rspec-expectations/docs)
 
           expect(actual).to matcher(expected)
           expect(actual).not_to matcher(expected)
@@ -188,121 +189,125 @@ This application is ready to be deployed to a production environment.
             end
           end
 
-  4. [RSpec Built-in Matchers](https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers)
+      3.3. [Built-in Matchers](https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers)
 
-  5. [System spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/system-specs/system-spec)
-      - wraps around **Rails' System Testing**.
-      - uses Capybara under the hood (Capybara gem is automatically required).
-      - run with the Selenium driver by default (`driven_by(:selenium)`)
-      - `type: :system`
-      - runs in a transaction so NO need DatabaseCleaner.
+      3.4. [System spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/system-specs/system-spec)
 
-            require "rails_helper"
+        - wraps around **Rails' System Testing**.
+        - uses Capybara under the hood (Capybara gem is automatically required).
+        - run with the Selenium driver by default (`driven_by(:selenium)`)
+        - `type: :system`
+        - runs in a transaction so NO need DatabaseCleaner.
 
-            RSpec.describe "Post management", type: :system do
-               it "creates a new post" do
-                  visit new_post_path
-                  fill_in "Title", with: "My First Post"
-                  fill_in "Body", with: "This is the body of my first post."
-                  click_on "Create Post"
+              require "rails_helper"
 
-                  expect(page).to have_content("Post was successfully created")
-                  expect(page).to have_content("My First Post")
-                  expect(page).to have_content("This is the body of my first post.")
-               end
-            end
+              RSpec.describe "Post management", type: :system do
+                it "creates a new post" do
+                    visit new_post_path
+                    fill_in "Title", with: "My First Post"
+                    fill_in "Body", with: "This is the body of my first post."
+                    click_on "Create Post"
 
-  6. [Feature spec](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/feature-specs/feature-spec)
-      - high-level tests via app's external interface, usually web pages.
-      - `type: :feature` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/features` instead)
-      - DSL:
-         + `feature` is aliased by `describe`
-         + `scenario` is aliased by `it`
-      - `RSpec.feature` block defines a feature test
+                    expect(page).to have_content("Post was successfully created")
+                    expect(page).to have_content("My First Post")
+                    expect(page).to have_content("This is the body of my first post.")
+                end
+              end
 
-            require "rails_helper"
+      3.5. [Feature spec](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/feature-specs/feature-spec)
 
-            RSpec.feature "Visitor creates a post", type: :feature do
-               scenario "with valid attributes" do
-                  visit new_post_path
-                  fill_in "Title", with: "My First Post"
-                  fill_in "Body", with: "This is the body of my first post."
-                  click_button "Create Post"
+        - high-level tests via app's external interface, usually web pages.
+        - `type: :feature` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/features` instead)
+        - DSL:
+          + `feature` is aliased by `describe`
+          + `scenario` is aliased by `it`
+        - `RSpec.feature` block defines a feature test
 
-                  expect(page).to have_content("Post was successfully created.")
-                  expect(page).to have_content("My First Post")
-                  expect(page).to have_content("This is the body of my first post.")
-               end
+              require "rails_helper"
 
-               scenario "with invalid attributes" do
-                  visit new_post_path
-                  fill_in "Title", with: ""
-                  fill_in "Body", with: ""
-                  click_button "Create Post"
+              RSpec.feature "Visitor creates a post", type: :feature do
+                scenario "with valid attributes" do
+                    visit new_post_path
+                    fill_in "Title", with: "My First Post"
+                    fill_in "Body", with: "This is the body of my first post."
+                    click_button "Create Post"
 
-                  expect(page).to have_content("Title can't be blank")
-                  expect(page).to have_content("Body can't be blank")
-               end
-            end
+                    expect(page).to have_content("Post was successfully created.")
+                    expect(page).to have_content("My First Post")
+                    expect(page).to have_content("This is the body of my first post.")
+                end
 
-  8. [Request spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/request-specs/request-spec)
-      - wraps around **Rails' Integration Testing**.
-      - `type: :request` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/requests` instead)
-      - Capybara is NOT supported in request specs
+                scenario "with invalid attributes" do
+                    visit new_post_path
+                    fill_in "Title", with: ""
+                    fill_in "Body", with: ""
+                    click_button "Create Post"
 
-            require "rails_helper"
+                    expect(page).to have_content("Title can't be blank")
+                    expect(page).to have_content("Body can't be blank")
+                end
+              end
 
-            RSpec.describe "Post management", type: :request do
-               it "creates a new post" do
-                  post posts_path, params: { post: { title: "My First Post", body: "This is the body of my first post." } }
-                  follow_redirect!
+      3.6. [Request spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/request-specs/request-spec)
 
-                  expect(response).to have_http_status(:ok)
-                  expect(response.body).to include("Post was successfully created")
-                  expect(response.body).to include("My First Post")
-                  expect(response.body).to include("This is the body of my first post.")
-               end
-            end
+        - wraps around **Rails' Integration Testing**.
+        - `type: :request` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/requests` instead)
+        - Capybara is NOT supported in request specs
 
-  9. [Controller spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/controller-specs)
-      - wraps around **Rails' Functional Testing**.
-      - `type: :controller` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/controllers` instead)
+              require "rails_helper"
 
-            require "rails_helper"
+              RSpec.describe "Post management", type: :request do
+                it "creates a new post" do
+                    post posts_path, params: { post: { title: "My First Post", body: "This is the body of my first post." } }
+                    follow_redirect!
 
-            RSpec.describe PostsController, type: :controller do
-               describe "GET #index" do
-                  it "returns a success response" do
-                     get :index
-                     expect(response).to be_successful
-                  end
-               end
+                    expect(response).to have_http_status(:ok)
+                    expect(response.body).to include("Post was successfully created")
+                    expect(response.body).to include("My First Post")
+                    expect(response.body).to include("This is the body of my first post.")
+                end
+              end
 
-               describe "GET #show" do
-                  it "returns a success response" do
-                     post = Post.create!(title: "My First Post", body: "This is the body of my first post.")
-                     get :show, params: { id: post.to_param }
-                     expect(response).to be_successful
-                  end
-               end
-            end
+      3.7. [Controller spec:](https://relishapp.com/rspec/rspec-rails/v/6-0/docs/controller-specs)
 
-         Example with Capybara:
+        - wraps around **Rails' Functional Testing**.
+        - `type: :controller` (OR set `config.infer_spec_type_from_file_location!` and place files in `spec/controllers` instead)
 
-            require "rails_helper"
+              require "rails_helper"
 
-            RSpec.describe PostsController, type: :controller do
-               describe "GET #new" do
-                  it "renders the new template" do
-                     get :new
-                     expect(response).to render_template(:new) # delegates to `assert_template` Rails assestion
-                  end
-               end
+              RSpec.describe PostsController, type: :controller do
+                describe "GET #index" do
+                    it "returns a success response" do
+                      get :index
+                      expect(response).to be_successful
+                    end
+                end
 
-               describe "POST #create" do
-                  it "creates a new post" do
-                     post :create, params: { post: { title: "My First Post", body: "This is the body of my first post." } }
-                     expect(response).to redirect_to(post_path(assigns(:post))) # delegates to `assert_redirected_to` Rails assestion
-                  end
-               end
-            end
+                describe "GET #show" do
+                    it "returns a success response" do
+                      post = Post.create!(title: "My First Post", body: "This is the body of my first post.")
+                      get :show, params: { id: post.to_param }
+                      expect(response).to be_successful
+                    end
+                end
+              end
+
+          Example with Capybara:
+
+              require "rails_helper"
+
+              RSpec.describe PostsController, type: :controller do
+                describe "GET #new" do
+                    it "renders the new template" do
+                      get :new
+                      expect(response).to render_template(:new) # delegates to `assert_template` Rails assestion
+                    end
+                end
+
+                describe "POST #create" do
+                    it "creates a new post" do
+                      post :create, params: { post: { title: "My First Post", body: "This is the body of my first post." } }
+                      expect(response).to redirect_to(post_path(assigns(:post))) # delegates to `assert_redirected_to` Rails assestion
+                    end
+                end
+              end
