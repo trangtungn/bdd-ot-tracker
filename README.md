@@ -336,7 +336,17 @@ This application is ready to be deployed to a production environment.
 
           ![BDD](public/images/bdd.jpeg)
 
-  5. Resources:
+  5. Testing Frameworks:
+
+      5.1. [**Capybara**](https://semaphoreci.com/community/tutorials/integration-testing-ruby-on-rails-with-minitest-and-capybara#what-is-integration-testing): for writing integration tests.
+        - an acceptance test framework for webapp.
+        - to do end-to-end testing in Rails applications.
+        - to simulate a user on a web page and interact with the web page.
+        - runs in headless mode by default.
+
+      5.2. [**Cucumber**](https://medium.com/@enikozsoldos93/cucumber-in-ruby-on-rails-1a4c2561ae54): for behavior-driven development (BDD), which allows developers to write tests in a natural language syntax.
+
+  6. Resources:
 
       - [Intro RSpec and Capybara testing](https://rubyyagi.com/intro-rspec-capybara-testing/)
       - [Cucumber](https://medium.com/@enikozsoldos93/cucumber-in-ruby-on-rails-1a4c2561ae54)
