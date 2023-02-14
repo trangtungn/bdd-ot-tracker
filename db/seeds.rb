@@ -55,3 +55,18 @@ num.times do |idx|
 end
 
 p "#{num} audit logs have been created."
+
+Room.create(
+  name: Faker::Space.planet,
+  description: Faker::Lorem.paragraph,
+  price_per_hour: Faker::Number.decimal(l_digits: 2),
+  currency: Room::CURRENCIES.values.sample
+)
+
+Room.create(
+  name: Faker::Space.planet,
+  description: Faker::Lorem.paragraph,
+  price_per_hour: Faker::Number.decimal(l_digits: 2),
+  currency: Room::CURRENCIES.values.sample
+)
+p '2 rooms have been created.'
