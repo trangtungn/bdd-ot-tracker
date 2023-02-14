@@ -16,6 +16,7 @@ gem 'administrate'
 gem 'pundit'
 gem 'puma-status'
 gem 'kaminari'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'capybara'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'brakeman'
   gem 'factory_bot_rails'
+  gem 'faker', '~> 3.1.1'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails'
@@ -45,6 +47,7 @@ end
 
 group :test do
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'webdrivers'
 end
 
