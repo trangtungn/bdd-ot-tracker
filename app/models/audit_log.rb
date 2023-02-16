@@ -5,7 +5,7 @@ class AuditLog < ApplicationRecord
 
   after_initialize :set_default_date
 
-  validates(*%i[status], presence: true)
+  validates(*%i[status start_date], presence: true)
 
   enum status: {
     pending: 0,
