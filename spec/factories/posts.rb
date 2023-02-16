@@ -2,23 +2,23 @@
 
 FactoryBot.define do
   factory :post do
-    date { Time.zone.today }
-    rationale { 'Some rationale today' }
-    overtime_request { 1.5 }
+    date { Faker::Time.between(from: DateTime.now - 10, to: DateTime.now) }
+    rationale { Faker::Lorem.unique.paragraph }
+    overtime_request { Faker::Number.decimal(l_digits: 2) }
     user
   end
 
   factory :second_post, class: 'Post' do
-    date { Date.yesterday }
-    rationale { 'More rationale yesterday' }
-    overtime_request { 2.5 }
+    date { Faker::Time.between(from: DateTime.now - 10, to: DateTime.now) }
+    rationale { Faker::Lorem.unique.paragraph }
+    overtime_request { Faker::Number.decimal(l_digits: 2) }
     user { create(:second_user) }
   end
 
   factory :third_post, class: 'Post' do
     date { Date.yesterday }
-    rationale { 'More rationale yesterday' }
-    overtime_request { 3.5 }
+    rationale { Faker::Lorem.unique.paragraph }
+    overtime_request { Faker::Number.decimal(l_digits: 2) }
     user { create(:second_user) }
   end
 end

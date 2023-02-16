@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 describe 'Posts' do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) do
+    FactoryBot.create(:user) do |user|
+      create_list(:post, 5, user: user)
+    end
+  end
 
-  let(:post1) { FactoryBot.create(:post, user: user) }
-  let(:post2) { FactoryBot.create(:second_post, user: user) }
+  let(:post1) { Post.first }
   let(:post_of_other_user) { FactoryBot.create(:third_post) }
 
   before do
@@ -17,29 +20,32 @@ describe 'Posts' do
     it 'can be reached successfully' do
       visit posts_path
       expect(page.status_code).to eq(200)
-      expect(page).to have_content(/List/)
+      expect(page).to have_content(/Overtime Requests/)
     end
 
     it 'has a list of posts' do
-      post1
-      post2
+      post = Post.last
 
       visit posts_path
-      expect(page).to have_content(/rationale today/)
-      expect(page).to have_content(/rationale yesterday/)
-      expect(page).to have_content(/Tester1|Tester2/)
-      expect(page).to have_content(1.5)
+
+      expect(post1.id).not_to eq post.id
+      [post, post1].each do |p|
+        expect(page).to have_content(p.rationale[..5])
+        expect(page).to have_content(p.user.full_name)
+        expect(page).to have_content(p.date)
+        expect(page).to have_content(p.overtime_request)
+      end
     end
 
     it 'has list of a specific user\'s posts' do
-      post1
+      post = Post.first
       post_of_other_user
 
       visit posts_path
 
-      expect(page).to have_content(post1.rationale)
-      expect(page).to have_content(post1.overtime_request)
-      expect(page).to have_content(post1.user.full_name)
+      expect(page).to have_content(post.rationale[..5])
+      expect(page).to have_content(post.overtime_request)
+      expect(page).to have_content(post.user.full_name)
       expect(page).not_to have_content(post_of_other_user.rationale)
       expect(page).not_to have_content(post_of_other_user.user.full_name)
     end
@@ -158,8 +164,8 @@ describe 'Posts' do
       click_link "delete_entry_#{post1.id}"
 
       expect(page.status_code).to eq(200)
-      expect(page).to have_content(/List Entries/)
-      expect(page).to have_no_content(post1.rationale)
+      expect(page).to have_content(/Overtime Requests/)
+      expect(page).to have_no_content(post1.rationale[..5])
     end
   end
 end
