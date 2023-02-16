@@ -67,7 +67,10 @@ This application is ready to be deployed to a production environment.
 
 ## References
 
-  1. This app following guidance from Professional Rails Code Along course of Jordan Hudgens in Udemy
+  1. This app references from various resources:
+
+      - Professional Rails Code Along course of Jordan Hudgens in Udemy
+      - RoRoom, a room service, and Lunar booking service
 
   2. [Gemfile syntax](https://bundler.io/guides/gemfile.html)
 

@@ -4,13 +4,21 @@ require 'rails_helper'
 
 ### Task 3:
 
-# Assume we have to integrate RoRoom booking with a 3rd-party booking system (let's called it Lunar) that only allows one booking with maximum 3 hours and there must be 15 minutes buffer between bookings.
+# Assume we have to integrate RoRoom booking with a 3rd-party booking system
+# (let's called it Lunar) that only allows one booking with maximum 3 hours
+# and there must be 15 minutes buffer between bookings.
 
-# When the user places a single RoRoom booking, our RoRoom system must create sufficient bookings to block availability on their system properly. Eg. we need to create more Lunar bookings if our RoRoom booking spans many more hours.
+# When the user places a single RoRoom booking, our RoRoom system must create
+# sufficient bookings to block availability on their system properly.
+# Eg. we need to create more Lunar bookings if our RoRoom booking spans many more hours.
 
-# Given minute of day (eg. minute 100 from 00:00) as the time input, a booking is represented as 100 -> 200, 100 being start minute of the day and 200 being end minute of the day.
+# Given minute of day (eg. minute 100 from 00:00) as the time input, a booking
+# is represented as 100 -> 200, 100 being start minute of the day and
+# 200 being end minute of the day.
 
-# Write a function called `splits` (defined in **lib/minutes.rb**) that converts a RoRoom booking into an array of Lunar bookings (each array item is represented similarly with start minute of the day and end minute of the day).
+# Write a function called `splits` (defined in **lib/minutes.rb**) that
+# converts a RoRoom booking into an array of Lunar bookings
+# (each array item is represented similarly with start minute of the day and end minute of the day).
 
 # Eg.
 # - Input: [100, 200] -> Output: [[100, 200]]
