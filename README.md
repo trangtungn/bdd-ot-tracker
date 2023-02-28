@@ -182,16 +182,18 @@ This application is ready to be deployed to a production environment.
 
       3.2 [Expectation](https://relishapp.com/rspec/rspec-expectations/docs)
 
-          expect(actual).to matcher(expected)
-          expect(actual).not_to matcher(expected)
+      - Syntax:
 
-      Example
+            expect(actual).to matcher(expected)
+            expect(actual).not_to matcher(expected)
 
-          RSpec.describe Account do
-            it "has a balance of zero when first created" do
-              expect(Account.new.balance).to eq(Money.new(0))
+        Example
+
+            RSpec.describe Account do
+              it "has a balance of zero when first created" do
+                expect(Account.new.balance).to eq(Money.new(0))
+              end
             end
-          end
 
       3.3. [Built-in Matchers](https://relishapp.com/rspec/rspec-expectations/v/3-9/docs/built-in-matchers)
 
