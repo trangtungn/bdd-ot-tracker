@@ -1,28 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col">
-      <h2>Overtime Requests</h2>
+    <div class="col-sm-12">
+      <h2>Pending Your Confirmation</h2>
     </div>
   </div>
-  <div class="row">
-    <% @overtime_requests.each do |request| %>
-      <div class="col-sm-4 bg bg-primary my-2">
-        <%= request.inspect %>
-      </div>
-    <% end %>
+  <div class="row align-items-center">
+    <%= render partial: 'pending_audit_confirmation', locals: { pending_audit_confirmations: @pending_audit_confirmations } %>
   </div>
-  <% if @audit_logs&.any? %>
-    <div class="row">
-      <div class="col">
-        <h2>Audit Logs</h2>
-      </div>
-    </div>
-    <div class="row">
-      <% @audit_logs.each do |log| %>
-        <div class="col-sm-4 bg bg-primary my-2">
-          <%= log.inspect %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
 </div>
