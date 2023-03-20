@@ -2,8 +2,11 @@
 
 class StaticController < ApplicationController
   def homepage
-    @overtime_requests = Post.submitted
-
-    @audit_logs = AuditLog.pending if current_user.admin?
+    if current_user.admin?
+      @overtime_requests = Post.submitted
+      @recent_audit_items = AuditLog.last(10)
+    else
+      @pending_audit_confirmations = current_user.audit_logs.pending
+    end
   end
 end
