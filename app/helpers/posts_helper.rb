@@ -4,7 +4,8 @@ module PostsHelper
   POST_COLOR_MAPPER = {
     'approved' => 'success',
     'submitted' => 'primary',
-    'rejected' => 'secondary'
+    'rejected' => 'secondary',
+    'pending' => 'warning'
   }.freeze
 
   def validate(post)
