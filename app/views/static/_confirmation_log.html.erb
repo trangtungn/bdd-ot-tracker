@@ -1,0 +1,16 @@
+<% recent_audit_items.each do |audit_item| %>
+  <div class="col-sm-3 bg bg-info m-3 p-3 card-border">
+    <div class="row">
+      <h3><%= audit_item.user.full_name %></h3>
+      <p>
+        <span class="card-detail">Week Starting: </span><%= audit_item.start_date %>
+      </p>
+      <p>
+        <span class="card-detail">Confirmed At: </span><%= audit_item.end_date || post_status_span('pending') %>
+      </p>
+      <p>
+        <span class="card-detail">Status: </span><%= post_status_span(audit_item.status) %>
+      </p>
+    </div>
+  </div>
+<% end %>
