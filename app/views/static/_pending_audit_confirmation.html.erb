@@ -1,0 +1,5 @@
+<% pending_audit_confirmations.each do |confirmation| %>
+  <div class="col-sm-12 d-flex flex-column my-2">
+    <%= link_to "I confirm that I did not perform any overtime for the week of: #{confirmation.start_date}", confirm_audit_log_path(confirmation), class: 'btn btn-primary', id: "confirm_#{confirmation.id}", data: { confirm: 'Are you sure you did not perform overtime?' } %>
+  </div>
+<% end %>
