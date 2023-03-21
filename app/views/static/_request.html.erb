@@ -1,5 +1,5 @@
 <% pending_requests.each do |request| %>
-  <div class="col-sm-4 bg bg-primary my-3 p-3 card-border">
+  <div class="col col-sm-3 bg bg-primary m-3 p-3 card-border">
     <div class="row">
       <h3><%= request.user.full_name %></h3>
       <p>
@@ -10,10 +10,10 @@
       </p>
     </div>
     <div class="row justify-content-center">
-      <div class="col-sm-6 ">
+      <div class="col col-sm-5">
         <%= link_to 'Approve', approve_post_path(request), class: 'btn btn-success btn-block', id: "approve_#{request.id}" %>
       </div>
-      <div class="col-sm-6">
+      <div class="col col-sm-5">
         <%= link_to 'Review', edit_post_path(request), class: 'btn btn-warning btn-block', id: "review_#{request.id}" %>
       </div>
     </div>
