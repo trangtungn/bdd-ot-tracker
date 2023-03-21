@@ -47,14 +47,15 @@ end
 
 p "#{num} posts have been created."
 
-num.times do |idx|
-  AuditLog.create!(
-    user: user,
-    start_date: Time.zone.today - 6.days
-  )
-end
+AuditLog.create!(user: user, start_date: Time.zone.today - 6.days)
+AuditLog.create!(user: user, start_date: Time.zone.today - 13.days)
+AuditLog.create!(user: user, start_date: Time.zone.today - 20.days)
 
-p "#{num} audit logs have been created."
+AuditLog.create!(user: user2, start_date: Time.zone.today - 6.days)
+AuditLog.create!(user: user2, start_date: Time.zone.today - 13.days)
+AuditLog.create!(user: user2, start_date: Time.zone.today - 20.days)
+
+p "6 audit logs have been created."
 
 Room.create(
   name: Faker::Space.planet,
