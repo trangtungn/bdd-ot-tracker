@@ -5,8 +5,10 @@ require 'rails_helper'
 describe 'Posts' do
   let(:admin) { FactoryBot.create(:admin) }
   let(:user) { FactoryBot.create(:user) }
+  let(:audit_log) { FactoryBot.create(:audit_log, user: user) }
 
   before do
+    audit_log
     sign_in(admin)
   end
 

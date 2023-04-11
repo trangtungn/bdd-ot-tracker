@@ -55,7 +55,7 @@ describe 'Posts' do
     it 'has a link to new post in homepage' do
       visit root_path
 
-      click_link 'New Entry'
+      click_link 'Request Overtime Approval'
       expect(page.status_code).to eq 200
       expect(page).to have_content(/New Entry/)
     end

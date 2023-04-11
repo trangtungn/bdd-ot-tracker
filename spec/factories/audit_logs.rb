@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :audit_log do
     user
     status { 0 }
-    start_date { Time.zone.today - 6.days }
+    start_date { 6.days.ago }
     end_date { nil }
   end
 end
