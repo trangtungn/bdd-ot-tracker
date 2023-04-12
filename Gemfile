@@ -49,6 +49,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'simplecov_json_formatter', require: false
   gem 'webdrivers'
 end
 

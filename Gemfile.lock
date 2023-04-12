@@ -408,6 +408,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   simplecov
+  simplecov_json_formatter
   solargraph
   spring
   stackprof
