@@ -175,7 +175,7 @@ GEM
     minitest (5.18.0)
     msgpack (1.6.0)
     net_http_unix (0.2.2)
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.14.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.3-x86_64-linux)
@@ -198,7 +198,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.0)
-    puma (5.6.5)
+    puma (5.6.7)
       nio4r (~> 2.0)
     puma-status (1.5)
       colorize (~> 0.8)
@@ -397,7 +397,7 @@ DEPENDENCIES
   pg (~> 1.1)
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3.9)
-  puma (~> 5.0)
+  puma (~> 5.6)
   puma-status
   pundit
   rack-mini-profiler (~> 2.0)
